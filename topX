@@ -5,25 +5,14 @@ file = ARGV[1]
 
 top_xs = []
 
-def debug(msg)
-    puts ">>> #{msg}"
-end
-
 File.readlines(file).each do |line|
     num = line.to_i
+    break if num == nil
 
-    add_to_xs = false
-    top_xs.each do |topx|
-        debug "#{num}, #{topx}"
-        if num > topx
-            debug "adding"
-            add_to_xs = true
-        end
-    end
+    add_to_xs = top_xs.length < x || num > top_xs.last
 
-    if add_to_xs || top_xs.length < x
-        top_xs << num
-        top_xs = top_xs.sort().reverse()[0..x-1]
+    if add_to_xs
+        top_xs = (top_xs << num).sort().reverse()[0..x-1]
     end
 end
 
