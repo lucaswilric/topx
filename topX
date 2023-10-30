@@ -12,6 +12,8 @@ File.open(file, "r").each_line do |line|
     add_to_xs = top_xs.length < x || num > top_xs.last
 
     if add_to_xs
+        # Append the current number, then sort, reverse the array (making it
+        # largest first), and truncate to the first X items.
         top_xs = (top_xs << num).sort().reverse()[0..x-1]
     end
 end
